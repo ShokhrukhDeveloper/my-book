@@ -12,7 +12,7 @@
         public int PublisherId { get; set; }
         public List<int> AuthorIds { get; set; }
     }
-    public class BookWithAuthorsVM
+    public class BookWithAuthorsVM 
     {
         public string Title { get; set; }
         public string Description { get; set; }
