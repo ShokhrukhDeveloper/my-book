@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using my_book.Data;
 
@@ -11,9 +12,11 @@ using my_book.Data;
 namespace mybook.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221117084608_PublishersAdded")]
+    partial class PublishersAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,23 +25,6 @@ namespace mybook.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("my_book.Data.Models.Author", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Authors");
-                });
-
             modelBuilder.Entity("my_book.Data.Models.Book", b =>
                 {
                     b.Property<int>("Id")
@@ -46,6 +32,10 @@ namespace mybook.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CoverPicture")
                         .IsRequired()
@@ -84,29 +74,6 @@ namespace mybook.Migrations
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("my_book.Data.Models.Book_Author", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AuthorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("BookId");
-
-                    b.ToTable("Books_Authors");
-                });
-
             modelBuilder.Entity("my_book.Data.Models.Publisher", b =>
                 {
                     b.Property<int>("Id")
@@ -121,7 +88,7 @@ namespace mybook.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Publishers");
+                    b.ToTable("Publisher");
                 });
 
             modelBuilder.Entity("my_book.Data.Models.Book", b =>
@@ -131,35 +98,6 @@ namespace mybook.Migrations
                         .HasForeignKey("PublisherId");
 
                     b.Navigation("Publisher");
-                });
-
-            modelBuilder.Entity("my_book.Data.Models.Book_Author", b =>
-                {
-                    b.HasOne("my_book.Data.Models.Author", "Author")
-                        .WithMany("Book_Authors")
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("my_book.Data.Models.Book", "Book")
-                        .WithMany("Book_Authors")
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Author");
-
-                    b.Navigation("Book");
-                });
-
-            modelBuilder.Entity("my_book.Data.Models.Author", b =>
-                {
-                    b.Navigation("Book_Authors");
-                });
-
-            modelBuilder.Entity("my_book.Data.Models.Book", b =>
-                {
-                    b.Navigation("Book_Authors");
                 });
 
             modelBuilder.Entity("my_book.Data.Models.Publisher", b =>

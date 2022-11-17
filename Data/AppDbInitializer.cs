@@ -21,7 +21,7 @@ namespace my_book.Data
                         DateRead=DateTime.Now.AddDays(-10),
                         Rate=4,
                         Genre="Biograp",
-                        Author="First author",
+                   
                         DateAdded=DateTime.Now,
                         CoverPicture = "Https===="
 
@@ -33,7 +33,7 @@ namespace my_book.Data
                         IsRead = false,
                         Rate = 4,
                         Genre = "Biograp",
-                        Author = "Second author",
+                 
                         DateAdded = DateTime.Now,
                         CoverPicture="Https===="
 

@@ -13,6 +13,8 @@ builder.Services.AddDbContext<AppDbContext>(option=>option.UseSqlServer(Connecti
 builder.Services.AddEndpointsApiExplorer();
 //Book service added service contaiiner
 builder.Services.AddTransient<BooksService>();
+builder.Services.AddTransient<AuthorService>();
+builder.Services.AddTransient<PublisherService>();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
@@ -29,6 +31,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-AppDbInitializer.Seed(app);
+//AppDbInitializer.Seed(app);
 
 app.Run();

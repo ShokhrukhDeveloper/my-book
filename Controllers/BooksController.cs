@@ -14,10 +14,10 @@ namespace my_book.Controllers
         {
             this.booksService = service;
         }
-        [HttpPost("add-book")]
+        [HttpPost("add-book-with-authors")]
         public IActionResult AddBook([FromBody]BookVM bookVM)
         {
-            booksService.AddBook(bookVM);
+            booksService.AddBookWithAuthors(bookVM);
             return Ok();
         }
         [HttpGet("get-all-books")]

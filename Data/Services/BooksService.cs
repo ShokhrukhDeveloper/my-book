@@ -12,7 +12,7 @@ namespace my_book.Data.Services
         {
             _context = dbContext;
         }
-        public void AddBook(BookVM book)
+        public void AddBookWithAuthors(BookVM book)
         {
             var _book = new Book()
             {
@@ -23,12 +23,22 @@ namespace my_book.Data.Services
                 DateAdded = DateTime.Now,
                 Rate = book.Rate,
                 CoverPicture = book.CoverPicture,
-                Author = book.Author,
                 Genre = book.Genre,
+                PublisherId= book.PublisherId,
 
             };
             _context.Books.Add(_book);
             _context.SaveChanges();
+            foreach (var Id in book.AuthorIds)
+            {
+                var _book_author = new Book_Author()
+                {
+                    BookId = _book.Id,
+                    AuthorId = Id
+                };
+                _context.Books_Authors.Add(_book_author);
+                _context.SaveChanges();
+            }
         }
 
         public List<Book> GetAllBooks() 
@@ -37,9 +47,22 @@ namespace my_book.Data.Services
             return books;
         }
 
-        public Book? GetBookById(int bookId)
+        public BookWithAuthorsVM? GetBookById(int bookId)
         {
-            return _context.Books.FirstOrDefault(b=>b.Id==bookId);
+            var _bookWithAuthors = _context.Books.Where(na=>na.Id==bookId).Select(book => new BookWithAuthorsVM()
+            {
+
+                Title = book.Title,
+                Description = book.Description,
+                IsRead = book.IsRead,
+                DateRead = book.DateRead,
+                Rate = book.Rate,
+                CoverPicture = book.CoverPicture,
+                Genre = book.Genre,
+                PublisherName = book.Publisher.Name,
+                AuthorNames = book.Book_Authors.Select(n => n.Author.FullName).ToList()
+            }).FirstOrDefault();
+            return _bookWithAuthors;
         }
         public Book? UpdateBookById(int Id, BookVM book)
         {
@@ -53,7 +76,6 @@ namespace my_book.Data.Services
                 _book.DateAdded = DateTime.Now;
                 _book.Rate = book.Rate;
                 _book.CoverPicture = book.CoverPicture;
-                _book.Author = book.Author;
                 _book.Genre = book.Genre;
                 _context.SaveChanges();
             }
