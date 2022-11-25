@@ -3874,32 +3874,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\shoxr\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Shokhrukh\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\shoxr\\OneDrive\\Desktop\\projects\\my-book\\my-book.csproj",
+      "projectUniqueName": "C:\\Users\\Shokhrukh\\my-book\\my-book.csproj",
       "projectName": "my-book",
-      "projectPath": "C:\\Users\\shoxr\\OneDrive\\Desktop\\projects\\my-book\\my-book.csproj",
-      "packagesPath": "C:\\Users\\shoxr\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\shoxr\\OneDrive\\Desktop\\projects\\my-book\\obj\\",
+      "projectPath": "C:\\Users\\Shokhrukh\\my-book\\my-book.csproj",
+      "packagesPath": "C:\\Users\\Shokhrukh\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Shokhrukh\\my-book\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\shoxr\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Shokhrukh\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
